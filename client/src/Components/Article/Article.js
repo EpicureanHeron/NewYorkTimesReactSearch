@@ -6,11 +6,15 @@ import Articleitem from "./Articleitem"
 
 class Article extends Component {
   state = {
+    books: [],
+    title: "",
+    author: "",
+    synopsis: "",
     articleInfo: []
   };
 
   componentDidMount() {
-    console.log("this triggered")
+   
     this.getArticles();
   }
 
@@ -30,7 +34,9 @@ class Article extends Component {
         <ul>
         {this.state.articleInfo.map(item => <Articleitem
           key={item.title}
-          snippet={item.snippet}
+          headline={item.headline.main}
+          url={item.web_url}
+          date={item.pub_date}
         />)}
         </ul>
       </div>
