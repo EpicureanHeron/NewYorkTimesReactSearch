@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import "./Article.css";
 import API from "../../utils/API";
+import Articleitem from "./Articleitem"
 
 class Article extends Component {
   state = {
@@ -16,16 +17,26 @@ class Article extends Component {
   getArticles = () => {
     API.searchNYT()
       .then(res =>
-        this.setState({ article: res.docs })
+       this.setState({ articleInfo: res.data.response.docs })
+        //console.log(res.data.response.docs )
       )
       .catch(err => console.log(err));
   };
 
   render() {
-    return(<p>{this.state.articleInfo}</p>)
-    
-  }
 
+    return (
+      <div>
+        <ul>
+        {this.state.articleInfo.map(item => <Articleitem
+          key={item.title}
+          snippet={item.snippet}
+        />)}
+        </ul>
+      </div>
+    )
+
+  }
 }
 
 export default Article;

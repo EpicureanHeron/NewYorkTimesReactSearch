@@ -7,8 +7,8 @@ router.route("/")
   .post(controller.create);
 
   
-router.route("/search")
-.get(controller.nytsearch);
+// router.route("/search")
+// .get(controller.nytsearch);
 
 // Matches with "/api/books/:id"
 router.route("/:id")

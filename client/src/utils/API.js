@@ -1,4 +1,5 @@
 import axios from "axios";
+const BASEURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 
 export default {
   // Gets all books
@@ -18,6 +19,7 @@ export default {
     return axios.post("/api/books", bookData);
   },
   searchNYT: function(){
-    return axios.get("/api/articles/search")
+    let apiURL = `${BASEURL}q=Iran&api-key=27221a6d54e94979826fb6e63cbd2df8`
+    return axios.get(apiURL)
   }
 };
