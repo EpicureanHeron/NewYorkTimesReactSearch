@@ -1,6 +1,6 @@
 const db = require("../models");
-const key = require("../keys");
-import axios from "axios";
+const key = require("../keys.js");
+const axios =  "./axios";
 require("dotenv").config();
 const BASEURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 const APIKEY = key.nyt.id
@@ -39,7 +39,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  //example url https://api.nytimes.com/svc/search/v2/articlesearch.json?q=trump&api-key=<APIKEY>
   nytsearch: function(req, res){
-    axios.get(BASEURL + APIKEY)
+    let apiURL = `${BASEURL}q=Iran&api-key=${APIKEY}`
+    res.json(apiURL)
+    //axios.get(apiURL)
+   //   .then(response => res.json(response))
+      
   }
 };

@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const routes = require("./routes");
 // var logger = require("morgan");
 var mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
@@ -20,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/NYT";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/NYT";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -28,7 +29,7 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 // Define API routes here
-require("./controllers/controller.js")(app)
+app.use(routes);
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
