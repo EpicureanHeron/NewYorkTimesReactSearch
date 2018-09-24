@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import Jumbotron from "./Components/Jumbotron"
-import {Input, TextArea, FormBtn} from "./Components/Form"
+import { Input, TextArea, FormBtn } from "./Components/Form"
 import Navbar from "./Components/Navbar"
 import Article from "./Components/Article"
 import Savedarticle from "./Components/Savedarticle"
+import API from "./utils/API"
 
 import "./App.css";
 
 class App extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    results:[],
+    topic: "",
+    startYear: "",
+    endYear: ""
   };
 
   // When the component mounts, load all books and save them to this.state.books
@@ -59,6 +60,25 @@ class App extends Component {
   //   }
   // };
 
+  searchAPI = event => {
+    console.log('triggered')
+    console.log(this.state.topic)
+    event.preventDefault()
+    API.searchNYT(this.state.topic)
+   // .then(res => console.log(res.data.response.docs))
+  
+  //  .then(res => this.setState(prevState => ({
+  //   results: [...prevState.results,res.data.response.docs]
+  // })))
+  //the below is not causing the info to reload
+    .then(res => this.state.results.push(res.data.response.docs))
+    .then(console.log(this.state.results ))
+   
+   .catch(err => console.log(err))
+  
+   
+  }
+
   render() {
     return (
       <div>
@@ -67,37 +87,45 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-            <form>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.author && this.state.title)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Book
+              <form>
+                <Input
+                  value={this.state.topic}
+                  onChange={this.handleInputChange}
+                  name="topic"
+                  placeholder="Topic"
+                />
+                <Input
+                  value={this.state.startYear}
+                  onChange={this.handleInputChange}
+                  name="startYear"
+                  placeholder="Start Year"
+                />
+                <Input
+                  value={this.state.endYear}
+                  onChange={this.handleInputChange}
+                  name="endYear"
+                  placeholder="End Year"
+                />
+                <FormBtn
+                 // disabled={!(this.state.author && this.state.title)}
+                  onClick={this.searchAPI}
+                >
+                  Search
               </FormBtn>
-            </form>
+              </form>
             </div>
           </div>
           <div className="row">
             <div className="col-md-12">
-              <Article />
+
+              {this.state.results.length > 1 ?  (           
+              <Article 
+              articles={this.state.results}
+              />)
+              :
+              (<div>Not loaded</div>)
+              }
+
             </div>
           </div>
           <div className="row">

@@ -18,8 +18,8 @@ export default {
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
   },
-  searchNYT: function(){
-    let apiURL = `${BASEURL}q=Iran&api-key=27221a6d54e94979826fb6e63cbd2df8`
+  searchNYT: function(topic){
+    let apiURL = `${BASEURL}q=${topic}&api-key=27221a6d54e94979826fb6e63cbd2df8`
     return axios.get(apiURL)
   }
 };
