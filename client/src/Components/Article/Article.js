@@ -5,32 +5,36 @@ import API from "../../utils/API";
 import Articleitem from "./Articleitem"
 
 class Article extends Component {
-  state = {
-    articleInfo: []
-  };
+  // state = {
 
-  componentDidMount() {
-    console.log("this triggered")
-    this.getArticles();
-  }
+  //   articleInfo: []
+  // };
 
-  getArticles = () => {
-    API.searchNYT()
-      .then(res =>
-       this.setState({ articleInfo: res.data.response.docs })
-        //console.log(res.data.response.docs )
-      )
-      .catch(err => console.log(err));
-  };
+  // componentDidMount() {
+   
+  //   this.getArticles();
+  // }
 
-  render() {
+  // getArticles = () => {
+  //   API.searchNYT()
+  //     .then(res =>
+  //      this.setState({ articleInfo: res.data.response.docs })
+  //       //console.log(res.data.response.docs )
+  //     )
+  //     .catch(err => console.log(err));
+  // };
+
+  render = props => {
 
     return (
       <div>
         <ul>
-        {this.state.articleInfo.map(item => <Articleitem
+         
+        {props.articles.map(item => <Articleitem
           key={item.title}
-          snippet={item.snippet}
+          headline={item.headline.main}
+          url={item.web_url}
+          date={item.pub_date}
         />)}
         </ul>
       </div>
