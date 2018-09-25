@@ -8,6 +8,7 @@ const APIKEY = key.nyt.id
 // Defining methods for the Article
 module.exports = {
   findAll: function(req, res) {
+    console.log(req.query)
     db.Article
       .find(req.query)
       .sort({ date: -1 })
