@@ -14,7 +14,7 @@ class App extends Component {
     topic: "",
     startYear: "",
     endYear: "",
-    databaseResults: []
+    databaseResults: {}
 
   };
 
@@ -115,7 +115,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+    
         <Jumbotron />
         <div className="container">
           <div className="row">
@@ -166,17 +166,7 @@ class App extends Component {
               /> */}
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-12">
-              {/* <Savedarticle /> */}
-              {this.state.databaseResults.length > 1   ?  ( 
-              this.databaseResults.map(item =>
-                <p>{item.title}</p>)
-              ) :
-              (<div>Not loaded</div>)
-              }
-            </div>
-          </div>
+
         </div>
       </div>
     );
