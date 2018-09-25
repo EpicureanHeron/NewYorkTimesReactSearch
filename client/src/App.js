@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Jumbotron from "./Components/Jumbotron"
-import { Input, TextArea, FormBtn } from "./Components/Form"
+import { Input, FormBtn } from "./Components/Form"
 import Navbar from "./Components/Navbar"
 import Article from "./Components/Article"
 import Savedarticle from "./Components/Savedarticle"
@@ -10,10 +10,11 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    results:[],
+    results: {},
     topic: "",
     startYear: "",
     endYear: ""
+
   };
 
   // When the component mounts, load all books and save them to this.state.books
@@ -67,15 +68,37 @@ class App extends Component {
     API.searchNYT(this.state.topic)
    // .then(res => console.log(res.data.response.docs))
   
-  //  .then(res => this.setState(prevState => ({
-  //   results: [...prevState.results,res.data.response.docs]
+  //  .then(res => this.setState(results => ({
+  //   results: [...this.state.results, res.data]
   // })))
+
+    .then(res=> this.setState({results: res.data.response.docs}))
   //the below is not causing the info to reload
-    .then(res => this.state.results.push(res.data.response.docs))
-    .then(console.log(this.state.results ))
+    // .then(res => this.state.results.push(res.data.response.docs))
+    // .then(res => res.data.response.docs.forEach(element => {
+    //   this.state.results.push(element.web_url)
+    // }))
+
+    // .then(res => this.setState({results: res.data }))
+    // .then(console.log(this.state.results))
+   // .then(this.setState({gatekeeper:"passed"}))
    
    .catch(err => console.log(err))
   
+   
+  }
+
+  handleClick(title, link, date) {
+    let articledata = {
+      
+        title: title,
+        link: link,
+        date: date
+      
+    }
+    console.log("triggered")
+    console.log(title + link+ date)
+    API.savearticle(articledata)
    
   }
 
@@ -117,15 +140,20 @@ class App extends Component {
           </div>
           <div className="row">
             <div className="col-md-12">
-
-              {this.state.results.length > 1 ?  (           
+              {console.log(this.state.results)}
+              {this.state.results.length > 1   ?  (  
+              
               <Article 
-              articles={this.state.results}
+              apiresults={this.state.results}
+              handleClick={this.handleClick}
               />)
               :
               (<div>Not loaded</div>)
               }
 
+              {/* <Article 
+              articles={this.state.results}
+              /> */}
             </div>
           </div>
           <div className="row">
