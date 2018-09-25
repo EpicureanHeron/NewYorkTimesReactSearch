@@ -30,25 +30,24 @@ class Savedarticle extends Component {
     return (
       <div>
 
-        <Jumbotron />
-        <div className="container">
 
-          <div className="row">
-            <div className="col-md-12">
-              {/* <Savedarticle /> */}
-              {this.state.databaseResults.length > 1 ? (
-                this.state.databaseResults.map(item =>
-                  <li key={item.title} className="list-group-item">
-                    <a target="_blank" href={item.link}>{item.title}</a>
-                    <p>{item.date}</p>
 
-                  </li>)
-              ) :
-                (<div>Not loaded</div>)
-              }
-            </div>
+        <div className="row">
+          <div className="col-md-12">
+            {/* <Savedarticle /> */}
+            {this.state.databaseResults.length > 1 ? (
+              this.state.databaseResults.map(item =>
+                <li key={item.title} className="list-group-item">
+                  <a target="_blank" href={item.link}>{item.title}</a>
+                  <p>{item.date}</p>
+
+                </li>)
+            ) :
+              (<div>Not loaded</div>)
+            }
           </div>
         </div>
+        
       </div>
     );
   }
