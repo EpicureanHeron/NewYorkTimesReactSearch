@@ -3,7 +3,7 @@ import Jumbotron from "../../Components/Jumbotron/Jumbotron"
 import { Input, FormBtn } from "../../Components/Form"
 
 import Article from "../../Components/Article"
-import Savedarticle from "../../Components/Savedarticle"
+import SavedArticle from "../../Components/Savedarticle"
 import API from "../../utils/API"
 import { Link, Route } from "react-router-dom";
 
@@ -134,7 +134,7 @@ class App extends Component {
                   handleClick={this.handleClick}
                 />)
                 :
-                (<div>Not loaded</div>)
+                (<div></div>)
               }
 
               {/* <Article 
@@ -149,6 +149,7 @@ class App extends Component {
             Learn Less
          </Link>
           <Route exact path={`${props.match.url}/saved`} component={Savedarticle} /> */}
+          <SavedArticle/>
         </div>
       </div>
     );

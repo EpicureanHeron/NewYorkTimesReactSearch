@@ -8,7 +8,7 @@ import API from "../../utils/API"
 
 //import "./App.css";
 
-class Savedarticle extends Component {
+class Saved extends Component {
   state = {
 
     databaseResults: {}
@@ -63,4 +63,4 @@ class Savedarticle extends Component {
   }
 }
 
-export default Savedarticle;
+export default Saved;
