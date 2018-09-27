@@ -5,9 +5,9 @@ import { Input, FormBtn } from "../../Components/Form"
 import Article from "../../Components/Article"
 import SavedArticle from "../../Components/Savedarticle"
 import API from "../../utils/API"
-import { Link, Route } from "react-router-dom";
 
-//import "./App.css";
+
+import "./Articlesearch.css";
 
 class App extends Component {
   state = {
@@ -35,40 +35,40 @@ class App extends Component {
     //this code is a mess, should be a better way to do this.
     event.preventDefault()
 
-    if(!this.state.topic){
+    if (!this.state.topic) {
       alert("No Topic!")
     }
 
-    else if(!this.state.startYear && !this.state.endYear){
+    else if (!this.state.startYear && !this.state.endYear) {
       API.searchNYT(this.state.topic, "19700101", "20181231")
-      .then(res => this.setState({ results: res.data.response.docs }))
+        .then(res => this.setState({ results: res.data.response.docs }))
 
 
-      .catch(err => console.log(err))
+        .catch(err => console.log(err))
     }
 
-    else if(!this.state.startYear && this.state.endYear){
+    else if (!this.state.startYear && this.state.endYear) {
       API.searchNYT(this.state.topic, "19700101", this.state.endYear + "1231")
-      .then(res => this.setState({ results: res.data.response.docs }))
+        .then(res => this.setState({ results: res.data.response.docs }))
 
 
-      .catch(err => console.log(err))
+        .catch(err => console.log(err))
     }
 
-    else if(this.state.startYear && !this.state.endYear){
+    else if (this.state.startYear && !this.state.endYear) {
       API.searchNYT(this.state.topic, this.state.startYear + "0101", "20181231")
-      .then(res => this.setState({ results: res.data.response.docs }))
+        .then(res => this.setState({ results: res.data.response.docs }))
 
 
-      .catch(err => console.log(err))
+        .catch(err => console.log(err))
     }
 
-    else if(this.state.startYear && this.state.endYear){
+    else if (this.state.startYear && this.state.endYear) {
       API.searchNYT(this.state.topic, this.state.startYear + "0101", this.state.endYear + "1231")
-      .then(res => this.setState({ results: res.data.response.docs }))
+        .then(res => this.setState({ results: res.data.response.docs }))
 
 
-      .catch(err => console.log(err))
+        .catch(err => console.log(err))
     }
 
 
@@ -88,15 +88,15 @@ class App extends Component {
   }
 
 
-  render= props => {
+  render = props => {
     return (
       <div>
 
         <Jumbotron />
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <form>
+            <div className="col-md-12 searchDiv">
+              <form className="searchForm"  >
                 <Input
                   value={this.state.topic}
                   onChange={this.handleInputChange}
@@ -125,8 +125,8 @@ class App extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-12">
-              {console.log(this.state.results)}
+            <div className="col-md-12 searchDiv">
+
               {this.state.results.length > 1 ? (
 
                 <Article
@@ -142,14 +142,11 @@ class App extends Component {
               /> */}
             </div>
           </div>
-          {/* <Link to={`${props.match.url}/saved`} role="button" className="btn btn-link">
-            Learn More
-         </Link>{" "}
-          <Link to="/" role="button" className="btn btn-link">
-            Learn Less
-         </Link>
-          <Route exact path={`${props.match.url}/saved`} component={Savedarticle} /> */}
-          <SavedArticle/>
+          <div className="row">
+            <div className="col-md-12 searchDiv">
+              <SavedArticle />
+            </div>
+          </div>
         </div>
       </div>
     );

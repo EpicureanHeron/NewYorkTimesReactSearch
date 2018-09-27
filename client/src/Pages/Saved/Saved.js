@@ -44,6 +44,7 @@ class Saved extends Component {
       <div>
         <div className="row">
           <div className="col-md-12">
+          <ul>
             {/* <Savedarticle /> */}
             {this.state.databaseResults.length > 1 ? (
               this.state.databaseResults.map(item =>
@@ -55,6 +56,7 @@ class Saved extends Component {
             ) :
               (<div>Loading Articles</div>)
             }
+            </ul>
           </div>
         </div>
 

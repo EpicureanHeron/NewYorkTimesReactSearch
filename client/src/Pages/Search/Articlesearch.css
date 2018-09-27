@@ -1,0 +1,12 @@
+.searchDiv {
+    border: 1px solid black;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.searchForm {
+    margin-top: 40px;
+}
