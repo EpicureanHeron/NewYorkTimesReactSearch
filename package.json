@@ -1,13 +1,14 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
     "install": "cd client && yarn install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
@@ -19,10 +20,12 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "dotenv": "^6.0.0",
     "express": "^4.15.4",
     "if-env": "^1.0.4",
     "mongoose": "^5.2.17",
-    "morgan": "^1.9.1"
+    "react-router-dom": "^4.3.1"
   }
 }
