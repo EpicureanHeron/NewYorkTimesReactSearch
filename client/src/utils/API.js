@@ -18,8 +18,18 @@ export default {
   savearticle: function(articleData) {
     return axios.post("/api/articles", articleData);
   },
-  searchNYT: function(topic){
-    let apiURL = `${BASEURL}q=${topic}&api-key=27221a6d54e94979826fb6e63cbd2df8`
+  searchNYT: function(topic, begindate, enddate){
+
+   
+    let apiURL = `${BASEURL}q=${topic}&begin_date=${begindate}&end_date=${enddate}&sort=newest&api-key=27221a6d54e94979826fb6e63cbd2df8`
     return axios.get(apiURL)
   }
 };
+
+
+
+//https://api.nytimes.com/svc/search/v2/articlesearch.json?
+//q=Trump
+//&begin_date=20000101
+//&end_date=20160101
+//&api-key=27221a6d54e94979826fb6e63cbd2df8
