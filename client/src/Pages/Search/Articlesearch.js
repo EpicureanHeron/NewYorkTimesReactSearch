@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../../Components/Jumbotron/Jumbotron"
 import { Input, FormBtn } from "../../Components/Form"
-import Navbar from "../../Components/Navbar"
+
 import Article from "../../Components/Article"
 import Savedarticle from "../../Components/Savedarticle"
 import API from "../../utils/API"
@@ -19,73 +19,57 @@ class App extends Component {
 
   };
 
-  // When the component mounts, load all books and save them to this.state.books
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
-
-  // // Loads all books  and sets them to this.state.books
-  // loadBooks = () => {
-  //   API.getBooks()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
-
-  // // Deletes a book from the database with a given id, then reloads books from the db
-  // deleteBook = id => {
-  //   API.deleteBook(id)
-  //     .then(res => this.loadBooks())
-  //     .catch(err => console.log(err));
-  // };
-
-  // Handles updating component state when the user types into the input field
   handleInputChange = event => {
     const { name, value } = event.target;
+
+
+
     this.setState({
       [name]: value
     });
   };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.state.title && this.state.author) {
-  //     API.saveBook({
-  //       title: this.state.title,
-  //       author: this.state.author,
-  //       synopsis: this.state.synopsis
-  //     })
-  //       .then(res => this.loadBooks())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
-
   searchAPI = event => {
-    console.log('triggered')
-    console.log(this.state.topic)
+
+
+    //this code is a mess, should be a better way to do this.
     event.preventDefault()
-    API.searchNYT(this.state.topic)
-      // .then(res => console.log(res.data.response.docs))
 
-      //  .then(res => this.setState(results => ({
-      //   results: [...this.state.results, res.data]
-      // })))
+    if(!this.state.topic){
+      alert("No Topic!")
+    }
 
+    else if(!this.state.startYear && !this.state.endYear){
+      API.searchNYT(this.state.topic, "19700101", "20181231")
       .then(res => this.setState({ results: res.data.response.docs }))
-      //the below is not causing the info to reload
-      // .then(res => this.state.results.push(res.data.response.docs))
-      // .then(res => res.data.response.docs.forEach(element => {
-      //   this.state.results.push(element.web_url)
-      // }))
 
-      // .then(res => this.setState({results: res.data }))
-      // .then(console.log(this.state.results))
-      // .then(this.setState({gatekeeper:"passed"}))
 
       .catch(err => console.log(err))
+    }
+
+    else if(!this.state.startYear && this.state.endYear){
+      API.searchNYT(this.state.topic, "19700101", this.state.endYear + "1231")
+      .then(res => this.setState({ results: res.data.response.docs }))
+
+
+      .catch(err => console.log(err))
+    }
+
+    else if(this.state.startYear && !this.state.endYear){
+      API.searchNYT(this.state.topic, this.state.startYear + "0101", "20181231")
+      .then(res => this.setState({ results: res.data.response.docs }))
+
+
+      .catch(err => console.log(err))
+    }
+
+    else if(this.state.startYear && this.state.endYear){
+      API.searchNYT(this.state.topic, this.state.startYear + "0101", this.state.endYear + "1231")
+      .then(res => this.setState({ results: res.data.response.docs }))
+
+
+      .catch(err => console.log(err))
+    }
 
 
   }
@@ -98,20 +82,11 @@ class App extends Component {
       date: date
 
     }
-    // console.log("triggered")
-    // console.log(title + link+ date)
+
     API.savearticle(articledata)
 
   }
-  componentDidMount = () => {
 
-    API.getArticles()
-      //.then(res => this.setState({databaseResults: res.data}) )
-      //  .then(res => this.setState(databaseResults => ({
-      //   databaseResults: [...this.state.databaseResults, res.data]})))
-      // .then(res=> console.log(res.data))
-      .catch(err => console.log(err))
-  }
 
   render= props => {
     return (

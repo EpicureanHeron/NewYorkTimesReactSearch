@@ -15,23 +15,33 @@ class Savedarticle extends Component {
 
   };
 
+  loadArticles = () => {
+
+    API.getArticles()
+
+      .then(res => this.setState({ databaseResults: res.data }))
+
+      .catch(err => console.log(err))
+
+  }
 
   componentDidMount = () => {
 
-    API.getArticles()
-      .then(res => this.setState({ databaseResults: res.data }))
-      //  .then(res => this.setState(databaseResults => ({
-      //   databaseResults: [...this.state.databaseResults, res.data]})))
-      // .then(res=> console.log(res.data))
-      .catch(err => console.log(err))
+    this.loadArticles()
+
+  }
+
+
+  handleClick(id) {
+
+    API.deletearticle(id)
+      .then(this.loadArticles())
+
   }
 
   render() {
     return (
       <div>
-
-
-
         <div className="row">
           <div className="col-md-12">
             {/* <Savedarticle /> */}
@@ -40,14 +50,14 @@ class Savedarticle extends Component {
                 <li key={item.title} className="list-group-item">
                   <a target="_blank" href={item.link}>{item.title}</a>
                   <p>{item.date}</p>
-
+                  <button type="button" onClick={() => this.handleClick(item._id)} className="btn btn-danger">Delete</button>
                 </li>)
             ) :
-              (<div>Not loaded</div>)
+              (<div>Loading Articles</div>)
             }
           </div>
         </div>
-        
+
       </div>
     );
   }
