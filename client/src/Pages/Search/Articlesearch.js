@@ -97,50 +97,55 @@ class App extends Component {
           <div className="row">
             <div className="col-md-12 searchDiv">
               <form className="searchForm"  >
+                <p>Search Topic (required)</p>
                 <Input
                   value={this.state.topic}
                   onChange={this.handleInputChange}
                   name="topic"
                   placeholder="Topic"
                 />
+                <p>Start Year (optional)</p>
                 <Input
                   value={this.state.startYear}
                   onChange={this.handleInputChange}
                   name="startYear"
                   placeholder="Start Year"
                 />
+                <p>End Year (optional)</p>
                 <Input
                   value={this.state.endYear}
                   onChange={this.handleInputChange}
                   name="endYear"
                   placeholder="End Year"
                 />
-                <FormBtn
-                  // disabled={!(this.state.author && this.state.title)}
-                  onClick={this.searchAPI}
-                >
-                  Search
+                <div  className="divcenter">
+                  <FormBtn
+                    // disabled={!(this.state.author && this.state.title)}
+                    onClick={this.searchAPI}
+                  >
+                    Search
               </FormBtn>
+              </div>
               </form>
             </div>
           </div>
           <div className="row">
-            <div className="col-md-12 searchDiv">
 
-              {this.state.results.length > 1 ? (
 
-                <Article
-                  apiresults={this.state.results}
-                  handleClick={this.handleClick}
-                />)
-                :
-                (<div></div>)
-              }
+            {this.state.results.length > 1 ? (
 
-              {/* <Article 
+              <Article
+                apiresults={this.state.results}
+                handleClick={this.handleClick}
+              />)
+              :
+              (<div></div>)
+            }
+
+            {/* <Article 
               articles={this.state.results}
               /> */}
-            </div>
+
           </div>
           <div className="row">
             <div className="col-md-12 searchDiv">
