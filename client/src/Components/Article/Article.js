@@ -14,6 +14,7 @@ const Article = props => (
           url={item.web_url}
           date={item.pub_date}
           handleClick={props.handleClick}
+          loadArticles={props.loadArticles}
         />)}
 
       
