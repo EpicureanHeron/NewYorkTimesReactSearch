@@ -44,19 +44,19 @@ class Saved extends Component {
       <div>
         <div className="row">
           <div className="col-md-12">
-          <ul>
+          
             {/* <Savedarticle /> */}
             {this.state.databaseResults.length > 1 ? (
               this.state.databaseResults.map(item =>
-                <li key={item.title} className="list-group-item">
-                  <a target="_blank" href={item.link}>{item.title}</a>
+                <div key={item.title} className="list-group-item customList">
+                  <a  className="linkList" target="_blank" href={item.link}>{item.title}</a>
                   <p>{item.date}</p>
                   <button type="button" onClick={() => this.handleClick(item._id)} className="btn btn-danger">Delete</button>
-                </li>)
+                </div>)
             ) :
               (<div>Loading Articles</div>)
             }
-            </ul>
+           
           </div>
         </div>
 

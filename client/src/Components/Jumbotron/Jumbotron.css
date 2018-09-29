@@ -1,0 +1,18 @@
+.jumbotron {
+    text-align: center;
+    background-image: url("https://www.thoughtco.com/thmb/YSL1407asHJNXY530SuPd3ZQa60=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/dwindling-newspaper-sales-echo-through-economy-77357285-599365ef054ad90011f84003.jpg");
+    background-repeat: no-repeat;
+    background-position:  center;
+
+   
+}
+
+.jumbotronHeader {
+    background-color: #6684a3;
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+    opacity: .9;
+    border-radius: 25px;
+    color: #ffffff;
+}
