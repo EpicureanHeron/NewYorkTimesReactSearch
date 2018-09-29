@@ -49,8 +49,8 @@ class Saved extends Component {
             {this.state.databaseResults.length > 1 ? (
               this.state.databaseResults.map(item =>
                 <div key={item.title} className="list-group-item customList">
-                  <a  className="linkList" target="_blank" href={item.link}>{item.title}</a>
-                  <p>{item.date}</p>
+                  <a  className="linkList" target="_blank" href={item.link}><h3>{item.title}</h3></a>
+                 <p>Published Date: {item.date.substring(0, 10)}</p>
                   <button type="button" onClick={() => this.handleClick(item._id)} className="btn btn-danger">Delete</button>
                 </div>)
             ) :

@@ -85,6 +85,7 @@ class App extends Component {
 
     API.savearticle(articledata)
 
+   
   }
 
 
@@ -94,6 +95,7 @@ class App extends Component {
 
         <Jumbotron />
         <div className="container">
+        <div className="wrapper">
           <div className="row">
             <div className="col-md-12 searchDiv">
               <form className="searchForm"  >
@@ -152,6 +154,7 @@ class App extends Component {
               <SavedArticle />
             </div>
           </div>
+        </div>
         </div>
       </div>
     );
