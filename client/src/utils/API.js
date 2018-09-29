@@ -25,11 +25,3 @@ export default {
     return axios.get(apiURL)
   }
 };
-
-
-
-//https://api.nytimes.com/svc/search/v2/articlesearch.json?
-//q=Trump
-//&begin_date=20000101
-//&end_date=20160101
-//&api-key=27221a6d54e94979826fb6e63cbd2df8
