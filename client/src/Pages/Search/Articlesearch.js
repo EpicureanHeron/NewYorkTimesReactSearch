@@ -11,24 +11,24 @@ import "./Articlesearch.css";
 
 class App extends Component {
   state = {
-    results: {},
+    results: [],
     topic: "",
     startYear: "",
     endYear: "",
-    databaseResults: {}
+    databaseResults: []
 
   };
 
+  //Updates form fields
   handleInputChange = event => {
     const { name, value } = event.target;
-
-
 
     this.setState({
       [name]: value
     });
   };
 
+  //Searches NYT Articles 
   searchAPI = event => {
 
 
@@ -74,22 +74,47 @@ class App extends Component {
 
   }
 
-  handleClick(title, link, date) {
-    let articledata = {
+  loadArticles = () => {
+   
+    API.getArticles()
 
-      title: title,
-      link: link,
-      date: date
+    .then(res => this.setState({ databaseResults: res.data }))
+    //.then(res=> console.log(res.data))
+    .catch(err => console.log(err))
+  }
 
+    //Saves article to mongoDB
+    handleClick(title, link, date) {
+      let articledata = {
+  
+        title: title,
+        link: link,
+        date: date
+      }
+  
+      API.savearticle(articledata)
+      .then(
+        this.loadArticles()
+      )
     }
 
-    API.savearticle(articledata)
+  componentDidMount = () => {
 
-   
+   this.loadArticles()
   }
 
 
-  render = props => {
+  delete(id) {
+
+    API.deletearticle(id)
+      .then(
+        
+       this.loadArticles()
+      )
+
+  }
+
+  render () {
     return (
       <div>
 
@@ -124,6 +149,7 @@ class App extends Component {
                   <FormBtn
                     // disabled={!(this.state.author && this.state.title)}
                     onClick={this.searchAPI}
+                   
                   >
                     Search
               </FormBtn>
@@ -137,8 +163,10 @@ class App extends Component {
             {this.state.results.length > 1 ? (
 
               <Article
+                
                 apiresults={this.state.results}
                 handleClick={this.handleClick}
+                loadArticles={this.loadArticles}
               />)
               :
               (<div></div>)
@@ -151,7 +179,12 @@ class App extends Component {
           </div>
           <div className="row">
             <div className="col-md-12 searchDiv">
-              <SavedArticle />
+              <SavedArticle
+              savedArticles={this.state.databaseResults}
+              delete={this.delete}
+              loadArticles={this.loadArticles}
+              
+              />
             </div>
           </div>
         </div>
