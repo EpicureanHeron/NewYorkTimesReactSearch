@@ -8,7 +8,7 @@ const SavedArticle = props => (
     <Link to={`/saved`} role="button" className="btn btn-link linkList">
       Show Saved Articles
 </Link>{" "}
-    <Link to="/" role="button" className="btn btn-link linkList">
+    <Link to="/" role="button" className="btn btn-link linkList ">
     Hide Saved Articles
 </Link>
     <Route exact path={`/saved`} component={Saved} />

@@ -6,7 +6,7 @@ import Articleitem from "./Articleitem"
 const Article = props => (
   <div className="col-md-12 searchDiv">
     <div>
-      <ul>
+      
 
         {props.apiresults.map(item => <Articleitem
           key={item.title}
@@ -16,7 +16,7 @@ const Article = props => (
           handleClick={props.handleClick}
         />)}
 
-      </ul>
+      
     </div>
   </div>
 
