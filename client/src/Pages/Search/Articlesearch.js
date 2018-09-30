@@ -104,13 +104,11 @@ class App extends Component {
   }
 
 
-  delete(id) {
+  delete = (id, load) =>  {
 
     API.deletearticle(id)
-      .then(
-        
-       this.loadArticles()
-      )
+      .then(res => load())
+      
 
   }
 
@@ -157,13 +155,13 @@ class App extends Component {
               </form>
             </div>
           </div>
-          <div className="row">
+          <div className="row"> 
 
 
-            {this.state.results.length > 1 ? (
+            {this.state.results.length > 0 ? (
 
               <Article
-                
+              
                 apiresults={this.state.results}
                 handleClick={this.handleClick}
                 loadArticles={this.loadArticles}
@@ -180,6 +178,7 @@ class App extends Component {
           <div className="row">
             <div className="col-md-12 searchDiv">
               <SavedArticle
+             
               savedArticles={this.state.databaseResults}
               delete={this.delete}
               loadArticles={this.loadArticles}

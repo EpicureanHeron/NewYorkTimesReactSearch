@@ -9,7 +9,7 @@ const Article = props => (
       
 
         {props.apiresults.map(item => <Articleitem
-          key={item.title}
+          key={item.headline.main}
           headline={item.headline.main}
           url={item.web_url}
           date={item.pub_date}
