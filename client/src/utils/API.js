@@ -21,7 +21,7 @@ export default {
   searchNYT: function(topic, begindate, enddate){
 
    
-    let apiURL = `${BASEURL}q=${topic}&begin_date=${begindate}&end_date=${enddate}&sort=newest&api-key=27221a6d54e94979826fb6e63cbd2df8`
+    let apiURL = `${BASEURL}q=${topic}&begin_date=${begindate}&end_date=${enddate}&sort=newest&api-key=nbpItY6w3Itd3k1BEXiAXStEF4wuKAw0`
     return axios.get(apiURL)
   }
 };
