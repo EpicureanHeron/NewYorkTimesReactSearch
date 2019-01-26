@@ -40,7 +40,7 @@ class App extends Component {
     }
 
     else if (!this.state.startYear && !this.state.endYear) {
-      API.searchNYT(this.state.topic, "19700101", "20181231")
+      API.searchNYT(this.state.topic, "19700101", "20211231")
         .then(res => this.setState({ results: res.data.response.docs }))
 
 
@@ -56,7 +56,7 @@ class App extends Component {
     }
 
     else if (this.state.startYear && !this.state.endYear) {
-      API.searchNYT(this.state.topic, this.state.startYear + "0101", "20181231")
+      API.searchNYT(this.state.topic, this.state.startYear + "0101", "20211231")
         .then(res => this.setState({ results: res.data.response.docs }))
 
 
