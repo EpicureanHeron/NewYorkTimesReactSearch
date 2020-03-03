@@ -794,9 +794,9 @@ minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
-mongodb@3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.5.3.tgz#f2c7ce9b5fc9a13da116ff1b6e816f6256010a86"
+mongodb@3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.5.4.tgz#f7609cfa9f8c56c35e844b4216ddc3a1b1ec5bef"
   dependencies:
     bl "^2.2.0"
     bson "^1.1.1"
@@ -811,12 +811,12 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
 
 mongoose@^5.5.13:
-  version "5.9.2"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.9.2.tgz#57ebad26784c1002f31bcdb4ecec69c9ab7a9a63"
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.9.3.tgz#d40842301fa244ddf11efa79b78e710362d2fedb"
   dependencies:
     bson "~1.1.1"
     kareem "2.3.1"
-    mongodb "3.5.3"
+    mongodb "3.5.4"
     mongoose-legacy-pluralize "1.0.2"
     mpath "0.6.0"
     mquery "3.2.2"
