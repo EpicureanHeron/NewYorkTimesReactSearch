@@ -30,6 +30,8 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/NYT";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
+console.log(MONGODB_URI)
+
 // Define API routes here
 app.use(routes);
 // Send every other request to the React app
